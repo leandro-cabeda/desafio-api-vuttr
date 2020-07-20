@@ -8,7 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableAutoConfiguration(
-		exclude = {SecurityAutoConfiguration.class })
+		exclude = {SecurityAutoConfiguration.class }
+		)
 @ComponentScan
 public class VuttrApiApplication {
 
