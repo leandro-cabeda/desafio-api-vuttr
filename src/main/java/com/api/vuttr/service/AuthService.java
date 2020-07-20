@@ -2,6 +2,11 @@ package com.api.vuttr.service;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.api.vuttr.entity.UsersEntity;
@@ -17,33 +22,39 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class AuthService {
 
+	private final AuthenticationManager authenticationManager;
 	private final JwtTokenProvider jwtService;
 	private final UsersRepository repository;
 
-	public AuthService(JwtTokenProvider jwtService, UsersRepository repository) {
+	public AuthService(AuthenticationManager authenticationManager,
+			JwtTokenProvider jwtService, UsersRepository repository) {
+		this.authenticationManager = authenticationManager;
 		this.jwtService = jwtService;
 		this.repository = repository;
 	}
 
 	public Object signinUser(CredentialsDTO credentials) {
 		
-		log.info("Retrieves the user by username and password!");
-		UsersEntity user = repository.findByUserNameAndPasswordIgnoreCase(credentials.getUsername(),
-				credentials.getPassword());
+		log.info("Validating the person's authentication with the received credentials!");
+		try {
 
-		log.info("Checks that this user does not exist with your credentials!");
-		if (user == null) {
+			authenticationManager.authenticate(
+					new UsernamePasswordAuthenticationToken(credentials.getUsername(), credentials.getPassword()));
+
+			UsersEntity user = repository.findByUserNameIgnoreCase(credentials.getUsername());
+
+			String token = jwtService.createToken(user.getUsername(), user.getRoles());
+
+			Map<String, String> obj = new HashMap<>();
+			obj.put("username", user.getUsername());
+			obj.put("token", token);
+
+			return obj;
+
+		} catch (AuthenticationException e) {
 			throw new CredentialsException("Invalid username : " + credentials.getUsername() + " or password: "
-					+ credentials.getPassword() + " provided!");
+					+ credentials.getPassword() + "provided!");
 		}
-
-		String token = jwtService.createToken(user.getUsername(), user.getRoles());
-
-		Map<String, String> obj = new HashMap<>();
-		obj.put("username", user.getUsername());
-		obj.put("token", token);
-
-		return obj;
 	}
 
 	public UsersEntity createUser(UsersEntity userEntity) {
@@ -53,6 +64,9 @@ public class AuthService {
 		if (user != null)
 			throw new RegisterExists("Error: record already contained in the bank!");
 
+		BCryptPasswordEncoder encode = new BCryptPasswordEncoder();
+		userEntity.setPassword(encode.encode(userEntity.getPassword()));
+		
 		log.info("Create a new user");
 		return repository.save(userEntity);
 	}
