@@ -10,7 +10,7 @@ import io.swagger.annotations.*;
 @Api(tags = { "Index EndPoint" })
 public class IndexController {
 
-	@GetMapping(produces = "application/json")
+	@GetMapping(value="/", produces = "application/json")
 	@ApiOperation(value = "Initial presentation of welcome to the tools API")
 	public ResponseEntity<String> welcome() {
 
