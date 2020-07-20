@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "f74f2e92-4795-41d1-a31f-160cb3c542d1",
+		"name": "vuttr-api",
+		"description": "Api para gerenciamento de ferramentas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:3000/api/tools",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/tools",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"tools"
+					]
+				},
+				"description": "List all Tools in bank"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/tools/node",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/tools/node",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"tools",
+						"node"
+					]
+				},
+				"description": "List All Tools in bank by Tag"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/tools",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"title\": \"test3\",\r\n        \"link\": \"https://www.test3.io/\",\r\n        \"description\": \"Extremely fast to test3.\",\r\n        \"tags\": [\r\n            \"github\",\r\n            \"planning\",\r\n            \"node\",\r\n            \"json\",\r\n            \"rest\",\r\n            \"localhost\"\r\n        ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/tools",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"tools"
+					]
+				},
+				"description": "Create new tool"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/tools/2",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/tools/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"tools",
+						"1"
+					]
+				},
+				"description": "Delete one tool by id"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/tools/id/1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/tools/id/3",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"tools",
+						"id",
+						"3"
+					]
+				},
+				"description": "Return the tool by id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/auth/signin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "87992341-1760-4e29-a9f6-0530c1e20c3f",
+						"exec": [
+							"if(responseCode.code >= 200 && responseCode.code <= 299){\r",
+							"    var jsonData = JSON.parse(responseBody);\r",
+							"    postman.setEnvironmentVariable('token',jsonData.token);\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"leandro\",\r\n    \"password\":\"admin123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/auth/signin",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"auth",
+						"signin"
+					]
+				},
+				"description": "Signing authentication api"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
