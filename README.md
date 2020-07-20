@@ -40,7 +40,8 @@ Necessita configurar o banco no arquivo application.properties, nele contém tod
 - mvn spring-boot:run => Este comando sobe a aplicação
 
 ## **Testar a Aplicação**
-Pode realizar o teste via Postman que irei mandar junto com projeto e depois só importar ou outros meios.
+- Pode realizar o teste via Postman que irei mandar junto com projeto e depois só importar ou outros meios.
+- Porta 3000 para acessar API.
 
 ## **Conta de usuário de teste**
 - username: leandro
@@ -50,4 +51,4 @@ Pode realizar o teste via Postman que irei mandar junto com projeto e depois só
 Qualquer dúvida, por favor, entre em contato com **[Leandro](mailto:leandro.cabeda@hotmail.com)**.
 
 ## **Link GitHub Desafio Projeto API**
-Acesse url GitHub [documentação](https://github.com/leandro-cabeda/desafio-api-vuttr#)
+Acesse url [GitHub-Projeto-API](https://github.com/leandro-cabeda/desafio-api-vuttr#)
