@@ -15,7 +15,4 @@ public interface UsersRepository extends JpaRepository<UsersEntity, Long> {
 
 	@Transactional(readOnly = true)
 	UsersEntity findByUserNameIgnoreCase(String userName);
-	
-	@Transactional(readOnly = true)
-	UsersEntity findByUserNameAndPasswordIgnoreCase(String userName,String password);
 }

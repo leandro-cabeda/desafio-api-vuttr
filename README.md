@@ -1,54 +1,53 @@
-# Projeto Teste para Desenvolvedores Fullstack Vojo
+# Desafio Projeto Vuttr Ferramentas
 
-Este projeto é parte do processo de seleção de desenvolvedores fullstack para a plataforma Vojo.
+Desafio realizado com framework Spring e linguagem Java, implementando uma API REST
 
->Vojo é uma plataforma digital que conecta pessoas sem trabalho à oportunidades de geração de renda.
+## **Configuração!**
+Necessita configurar o banco no arquivo application.properties, nele contém toda configuração necessária.
 
-## **Sobre o Projeto**
+## **Ferramentas usadas e Porque!**
 
-Este é o projeto base da nova plataforma Vojo. Aqui você encontra o projeto backend, que está sendo desenvolvido em [NestJS](https://docs.nestjs.com/) e o nosso webapp em em [ReactJS](https://pt-br.reactjs.org/).
+**1. Spring:** Spring Boot
+- Spring por ser um framework que disponibiliza diversas ferramentas para trabalhar com API´s e com segurança.
+- Spring Boot por ser já um projeto pré-montado com os minimos preciso para configurar e desenvolver a Api
 
-A API de autenticação já está implementada, assim como a view de Login. 
+**2. MySQL:** Banco de dados relacional
+- Por ser gerenciar toda estrutura relacional e ser fácil de trabalhar
 
-## **Requisitos**
-**1. Backend:** Implementar novo módulo ***jobs*** na API com os seguintes endpoints:
-* **GET** /jobs
+**3. Flyway:** Versionamento de banco
+- Ele ótimiza o versinamento do banco e faz tudo sozinho o versionamento em base da configuração
 
-    * listar as vagas que estão cadastradas no nosso banco de dados.
+**3. Swagger:** Documentação da API
+- Swagger é uma ferramenta espetacular para documentação de API onde o usuário irá poder ver como funciona e ainda poder testar direto na web
 
-* **PUT** / jobs/:id
+**4. JWT:** Autenticação com JWT
+- É recomando de maioria das API´s implementar autenticação por JWT pela segurança e também por controlar o acesso do usuário
 
-    * atualização de uma vaga específica.
-    * este endpoint só pode ser acessado por usuários autenticados por `Authorization Bearer Token`.
+**5. Loombok:** Implementação das propriedades das classes
+- Ele é muito útilo para implementar tudo que precisa com as propriedades das classes sem precisar user geração de getter e setters, etc.
 
-**2. Frontend:** Implementar visualização da listagem de vagas e formulário de atualização de vaga específica.
+**6. ModelMapper:** Conversor de objetos
+- Ele converte os objetos das entidades com os objetos DTO para entregar ao usuário na requisição
 
-**3. Infraestrutura:** Fazer o deploy da aplicação no [Heroku](https://www.heroku.com/)
-
-## **Instruções**
-1. Faça o **`clone`** deste repositório.
-2. Trabalhe localmente no seu projeto.
-3. Quando tiver finalizado, suba o seu projeto para um **projeto privado** no GitHub.
-4. Nos envie o link do seu repositório e do aplicativo online (Heroku). Não esqueça de adicionar os nosso usuários como colaboradores do seu repositório para que possamos acessar.
-
-Qualquer dúvida, por favor, entre em contato com **[Carolina](mailto:carolina.higo@mindlab.com.br)**.
-
-## **Instruções de instalação (Frontend)**
-O projeto frontend utiliza dependencias armazenadas no registry do Github. Para que você possa fazer a instalação das dependencias sem receber um erro de autenticação `401`, é necessário fazer o login utilizando o NPM. Para isso, logue-se utilizando os seguinte comando:
-
-```sh
-npm login --registry=https://npm.pkg.github.com
-```
-
-Para soluções de erros ou mais detalhes, acesse esta [documentação](https://help.github.com/pt/packages/using-github-packages-with-your-projects-ecosystem/configuring-npm-for-use-with-github-packages#), você pode encontrar diversos métodos de autenticação.
-
-## **Mantenedores**
-
-👤 **Carolina Higo**
-
-👤 **Leonardo Isso**
+**7. Security:** Segurança na aplicação
+- Ele assegura toda a segurança na api pela autenticação do usuário e proteger.
 
 
-## **Licenças**
+## **Instruções para Rodar**
+1. Pode importar o projeto em alguma Ide como: Eclipse, Intellij, etc.
+2. Pode rodar a aplicação a partir dos comandos via prompt comando:
+- mvn clean package spring-boot:run => Este comando limpa todos os arquivos,(deleta), recompila o projeto, empacota como jar e sobe aplicação
+- mvn spring-boot:run => Este comando sobe a aplicação
 
-Este projeto pertence à [MindLab](https://www.mindlab.com.br/) e não deverá ser reproduzido ou divulgado sem a prévia autorização da empresa.
+## **Testar a Aplicação**
+Pode realizar o teste via Postman que irei mandar junto com projeto e depois só importar ou outros meios.
+
+## **Conta de usuário de teste**
+- username: leandro
+- password: admin123
+
+## **Informações pelo email**
+Qualquer dúvida, por favor, entre em contato com **[Leandro](mailto:leandro.cabeda@hotmail.com)**.
+
+## **Link GitHub Desafio Projeto API**
+Acesse url GitHub [documentação](https://github.com/leandro-cabeda/desafio-api-vuttr#)
