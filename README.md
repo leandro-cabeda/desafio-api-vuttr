@@ -50,5 +50,11 @@ Necessita configurar o banco no arquivo application.properties, nele contém tod
 ## **Informações pelo email**
 Qualquer dúvida, por favor, entre em contato com **[Leandro](mailto:leandro.cabeda@hotmail.com)**.
 
+## **Link Acesso Swagger Documentação API**
+Acesse url [Projeto-API-Swagger](http://localhost:3000/swagger-ui.html#/#)
+
+## **Link Repositorio Heroku API**
+Acesse url [Heroku-Projeto-API](https://git.heroku.com/vuttrapitools.git#)
+
 ## **Link GitHub Desafio Projeto API**
 Acesse url [GitHub-Projeto-API](https://github.com/leandro-cabeda/desafio-api-vuttr#)
