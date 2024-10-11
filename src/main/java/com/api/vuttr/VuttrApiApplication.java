@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.*;
 import org.springframework.context.annotation.ComponentScan;
 
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.api.vuttr.helper"})
 @EnableAutoConfiguration
 @ComponentScan
 public class VuttrApiApplication {

@@ -1,4 +1,4 @@
-package com.api.vuttr.helper.tools;
+package com.api.vuttr.controller.helper.tools;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import com.api.vuttr.entity.ToolsEntity;
 import java.util.*;
 import static java.util.stream.Collectors.*;
 
-@Component("toolsHelperFromHelper")
+@Component
 public class ToolsHelper {
 
 	private final ModelMapper modelMapper;

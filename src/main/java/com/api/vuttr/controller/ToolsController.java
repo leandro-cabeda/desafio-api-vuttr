@@ -19,7 +19,7 @@ import javax.validation.Valid;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/tools")
+@RequestMapping("/tools")
 @Api(tags = {"Tools EndPoint"})
 public class ToolsController {
 
@@ -45,6 +45,9 @@ public class ToolsController {
 
 	@GetMapping(produces = "application/json")
 	@ApiOperation(value = "Lists all tools")
+	//@Secured({ "ADMIN" })
+	//@PreAuthorize("hasRole('ADMIN')")
+	//@RolesAllowed({"ADMIN"})
 	public ResponseEntity<List<ToolsDTO>> findAllTools() {
 
 		log.info("Returning the list of entity tools and converting them to toolsDTO!");
@@ -75,12 +78,28 @@ public class ToolsController {
 		}
 
 		log.info("Converts data to entity when sending through the service and returns converting to DTO");
-		ToolsDTO tools = helper.toModel(service.createTools(helper.toEntity(toolsDTO)));
+		ToolsDTO tool = helper.toModel(service.createTools(helper.toEntity(toolsDTO)));
 
 		log.info("Adds the url's URI with Id!");
-		URI uri = getUri(tools.getId());
+		URI uri = getUri(tool.getId());
 
-		return ResponseEntity.created(uri).body(tools);
+		return ResponseEntity.created(uri).body(tool);
+	}
+	
+	@PutMapping(value = "/{id}",produces = "application/json", consumes = "application/json")
+	@ApiOperation(value = "Update a tool")
+	public ResponseEntity<ToolsDTO> updateTools(@Valid @RequestBody ToolsDTO toolsDTO, 
+			@ApiParam(value = "Id to search for a particular tool for update", required = true, example = "1")
+			@PathVariable("id") Long id,
+			BindingResult result) {
+
+		if (result.hasErrors()) {
+			return ResponseEntity.badRequest().body(toolsDTO);
+		}
+
+		ToolsDTO tool = helper.toModel(service.updateTools(id,helper.toEntity(toolsDTO)));
+
+		return ResponseEntity.ok(tool);
 	}
 
 	@DeleteMapping(value = "/{id}", produces = "application/json")

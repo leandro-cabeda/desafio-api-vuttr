@@ -62,6 +62,19 @@ public class ToolsService {
 		log.info("Saving a new tool!");
 		return repository.save(entity);
 	}
+	
+	public ToolsEntity updateTools(Long id,ToolsEntity entity) {
+		
+		ToolsEntity tool = repository.findById(id)
+				.orElseThrow(NotFound.notFound("Tool with id :" + id + " not found!"));
+
+		entity.setId(tool.getId());
+		entity.setTagsObject(toolsByTagsToConverterObject(entity));
+
+		tool= repository.save(entity);
+		
+		return toolByTagsToConverterString(tool);
+	}
 
 	public void deleteToolsById(Long id) {
 		log.info("Retrieves the tool using the findIdTools function by passing id: " + id
@@ -72,7 +85,8 @@ public class ToolsService {
 	private List<TagsEntity> toolsByTagsToConverterObject(ToolsEntity entity) {
 
 		log.info("Retrieves the list of tags and creates the tag objects for the tool and returns as a list");
-		List<TagsEntity> tagsObject = entity.getTags().stream().map(tagName -> new TagsEntity(tagName, entity))
+		List<TagsEntity> tagsObject = entity.getTags().stream()
+				.map(tagName -> new TagsEntity(tagName, entity))
 				.collect(toList());
 
 		return tagsObject;

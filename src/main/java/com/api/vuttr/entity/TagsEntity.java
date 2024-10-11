@@ -28,4 +28,5 @@ public class TagsEntity implements Serializable {
 		this.name = name;
 		this.tool = tool;
 	}
+	
 }
